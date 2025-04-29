@@ -4,6 +4,7 @@ use config::CLAP_STYLING;
 mod get {
     pub mod get_cmd;
     pub mod iface;
+    pub mod ip;
 }
 use crate::get::get_cmd;
 
