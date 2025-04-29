@@ -1,6 +1,12 @@
 mod config;
 use clap::{Parser, Subcommand};
 use config::CLAP_STYLING;
+mod get {
+    pub mod get_cmd;
+    pub mod iface;
+}
+use crate::get::{get_cmd, iface};
+use iface::FOOCONST;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None, styles = CLAP_STYLING)]
@@ -11,40 +17,22 @@ struct Cli {
 
 #[derive(Subcommand, Debug)]
 enum Commands {
-    /// Does foo things
-    Foo {
-        #[command(subcommand)]
-        foo_command: FooCommands,
-    },
-    /// Does bar things
+    Foo(get_cmd::FooCmd),
     Bar,
-}
-
-#[derive(Subcommand, Debug)]
-enum FooCommands {
-    /// Tests foo functionality
-    Test {
-        // You can add arguments specific to the 'test' subcommand here
-        #[arg(short, long)]
-        verbose: bool,
-    },
 }
 
 fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Foo { foo_command } => {
-            match foo_command {
-                FooCommands::Test { verbose } => {
-                    println!("Running foo test command. Verbose: {}", verbose);
-                    // Implement your 'foo test' logic here
-                }
-            }
+        Commands::Foo(foo_data) => {
+            get_cmd::handle_foo_command(foo_data);
         }
         Commands::Bar => {
             println!("Running bar command");
             // Implement your 'bar' logic here
         }
     }
+
+    println!("{}", FOOCONST);
 }
