@@ -5,8 +5,7 @@ mod get {
     pub mod get_cmd;
     pub mod iface;
 }
-use crate::get::{get_cmd, iface};
-use iface::FOOCONST;
+use crate::get::get_cmd;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None, styles = CLAP_STYLING)]
@@ -17,7 +16,7 @@ struct Cli {
 
 #[derive(Subcommand, Debug)]
 enum Commands {
-    Foo(get_cmd::FooCmd),
+    Get(get_cmd::GetCmd),
     Bar,
 }
 
@@ -25,7 +24,7 @@ fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Foo(foo_data) => {
+        Commands::Get(foo_data) => {
             get_cmd::handle_foo_command(foo_data);
         }
         Commands::Bar => {
@@ -33,6 +32,4 @@ fn main() {
             // Implement your 'bar' logic here
         }
     }
-
-    println!("{}", FOOCONST);
 }

@@ -1,21 +1,19 @@
-use clap::{Parser, Subcommand}; // Import necessary attributes
+use crate::get::iface::iface;
+use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)] // While we only need Subcommand here, Parser might be useful later if Foo itself takes direct arguments
-pub struct FooCmd {
+pub struct GetCmd {
     #[command(subcommand)]
     pub foo_command: FooTestCmd,
 }
 
 #[derive(Subcommand, Debug)]
 pub enum FooTestCmd {
-    Test,
+    Iface,
 }
 
-pub fn handle_foo_command(foo_data: &FooCmd) {
+pub fn handle_foo_command(foo_data: &GetCmd) {
     match &foo_data.foo_command {
-        FooTestCmd::Test => {
-            println!("Running foo test command");
-            // Implement your 'foo test' logic here
-        }
+        FooTestCmd::Iface => iface(),
     }
 }
