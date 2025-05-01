@@ -5,6 +5,7 @@ mod get {
     pub mod get_cmd;
     pub mod iface;
     pub mod ip;
+    pub mod sensors;
 }
 use crate::get::get_cmd;
 
