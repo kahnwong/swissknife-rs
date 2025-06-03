@@ -1,3 +1,4 @@
+use crate::utils::clipboard;
 use passwords::PasswordGenerator;
 
 pub fn password() {
@@ -12,5 +13,8 @@ pub fn password() {
         strict: true,
     };
 
-    println!("{}", pg.generate_one().unwrap());
+    let password = pg.generate_one().unwrap();
+    println!("{}", password);
+
+    clipboard::write_to_clipboard(password)
 }

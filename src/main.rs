@@ -1,19 +1,21 @@
 mod config;
-use crate::generate::generate_cmd;
-use clap::{Parser, Subcommand};
-use config::CLAP_STYLING;
-
 mod get {
     pub mod get_cmd;
     pub mod iface;
     pub mod ip;
     pub mod sensors;
 }
-use crate::get::get_cmd;
 mod generate {
     pub mod generate_cmd;
     pub mod password;
 }
+mod utils {
+    pub mod clipboard;
+}
+use crate::generate::generate_cmd;
+use crate::get::get_cmd;
+use clap::{Parser, Subcommand};
+use config::CLAP_STYLING;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None, styles = CLAP_STYLING)]
