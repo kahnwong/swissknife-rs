@@ -1,19 +1,9 @@
 use crate::utils::clipboard;
-use passwords::PasswordGenerator;
+use passforge::{Generator, Length, PasswordConfig, PasswordGenerator};
 
 pub fn password() {
-    let pg = PasswordGenerator {
-        length: 32,
-        numbers: true,
-        lowercase_letters: true,
-        uppercase_letters: true,
-        symbols: false,
-        spaces: false,
-        exclude_similar_characters: false,
-        strict: true,
-    };
-
-    let password = pg.generate_one().unwrap();
+    let config = PasswordConfig::new(Length::Single(32), true, true, false);
+    let password = PasswordGenerator::generate(&config).expect("Failed to generate password");
     println!("{}", password);
 
     clipboard::write_to_clipboard(password)
