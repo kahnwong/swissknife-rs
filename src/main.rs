@@ -30,7 +30,6 @@ struct Cli {
 enum Commands {
     Generate(generate_cmd::GenerateCmd),
     Get(get_cmd::GetCmd),
-    Bar,
 }
 
 fn main() {
@@ -42,9 +41,6 @@ fn main() {
         }
         Commands::Get(get_data) => {
             get_cmd::handle_get_command(get_data);
-        }
-        Commands::Bar => {
-            println!("Running bar command");
         }
     }
 }
