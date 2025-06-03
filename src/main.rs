@@ -7,6 +7,7 @@ mod get {
 }
 mod generate {
     pub mod generate_cmd;
+    pub mod key;
     pub mod passphrase;
     pub mod password;
 }

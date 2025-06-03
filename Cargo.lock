@@ -1821,12 +1821,14 @@ name = "swissknife"
 version = "0.1.0"
 dependencies = [
  "arboard",
+ "base64",
  "clap",
  "clap-cargo",
  "colored",
  "default-net",
  "log",
  "passforge",
+ "rand",
  "reqwest",
  "serde",
  "serde_json",
