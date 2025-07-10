@@ -14,7 +14,7 @@ passforge = "0.1.1"
 reqwest = { version = "0.12", features = ["json", "blocking"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-sysinfo = "0.35.0"
+sysinfo = "0.36.0"
 rand = "0.8.5"
 base64 = "0.22.1"
 ed25519-dalek = { version = "2.1.1", features = ["pem", "pkcs8", "rand_core"] }
