@@ -18,3 +18,5 @@ sysinfo = "0.35.0"
 rand = "0.8.5"
 base64 = "0.22.1"
 ed25519-dalek = { version = "2.1.1", features = ["pem", "pkcs8", "rand_core"] }
+tabled = { version = "0.20.0", features = ["ansi"] }
+bytesize = "2.0.1"

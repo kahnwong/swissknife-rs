@@ -1,6 +1,7 @@
 use crate::get::iface::iface;
 use crate::get::ip::ip;
 use crate::get::sensors::sensors;
+use crate::get::volumes::volumes;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
@@ -18,6 +19,8 @@ pub enum GetSubCmd {
     Ip,
     #[command(about = "Get sensors info")]
     Sensors,
+    #[command(about = "List volumes")]
+    Volumes,
 }
 
 pub fn handle_get_command(get_data: &GetCmd) {
@@ -25,5 +28,6 @@ pub fn handle_get_command(get_data: &GetCmd) {
         GetSubCmd::Iface => iface(),
         GetSubCmd::Ip => ip(),
         GetSubCmd::Sensors => sensors(),
+        GetSubCmd::Volumes => volumes(),
     }
 }
