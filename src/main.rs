@@ -4,6 +4,7 @@ mod get {
     pub mod iface;
     pub mod ip;
     pub mod sensors;
+    pub mod system_info;
     pub mod volumes;
 }
 mod generate {
