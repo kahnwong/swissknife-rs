@@ -1,4 +1,6 @@
 mod config;
+mod shouldideploytoday;
+
 mod get {
     pub mod get_cmd;
     pub mod iface;
@@ -20,6 +22,7 @@ mod utils {
 
 use crate::generate::generate_cmd;
 use crate::get::get_cmd;
+use crate::shouldideploytoday::shouldideploytoday;
 use clap::{CommandFactory, Parser, Subcommand};
 use clap_complete::aot::{Shell, generate};
 use config::CLAP_STYLING;
@@ -34,28 +37,30 @@ struct Cli {
 
 #[derive(Subcommand, Debug)]
 enum Commands {
-    Generate(generate_cmd::GenerateCmd),
-    Get(get_cmd::GetCmd),
     Completion {
         #[arg(value_enum)]
         shell: Shell,
     },
+    Generate(generate_cmd::GenerateCmd),
+    Get(get_cmd::GetCmd),
+    Shouldideploytoday {},
 }
 
 fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
+        Commands::Completion { shell } => {
+            let mut cmd = Cli::command();
+            let bin_name = cmd.get_name().to_string();
+            generate(*shell, &mut cmd, bin_name, &mut io::stdout());
+        }
         Commands::Generate(generate_data) => {
             generate_cmd::handle_generate_command(generate_data);
         }
         Commands::Get(get_data) => {
             get_cmd::handle_get_command(get_data);
         }
-        Commands::Completion { shell } => {
-            let mut cmd = Cli::command();
-            let bin_name = cmd.get_name().to_string();
-            generate(*shell, &mut cmd, bin_name, &mut io::stdout());
-        }
+        Commands::Shouldideploytoday {} => shouldideploytoday(),
     }
 }

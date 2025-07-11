@@ -23,3 +23,4 @@ bytesize = "2.0.1"
 users = "0.11.0"
 battery = "0.7.8"
 clap_complete = "4.5.55"
+chrono = { version = "0.4.41", features = ["serde"] }
