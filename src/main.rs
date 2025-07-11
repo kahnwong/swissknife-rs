@@ -17,10 +17,13 @@ mod generate {
 mod utils {
     pub mod clipboard;
 }
+
 use crate::generate::generate_cmd;
 use crate::get::get_cmd;
-use clap::{Parser, Subcommand};
+use clap::{CommandFactory, Parser, Subcommand};
+use clap_complete::aot::{Shell, generate};
 use config::CLAP_STYLING;
+use std::io;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None, styles = CLAP_STYLING)]
@@ -33,6 +36,10 @@ struct Cli {
 enum Commands {
     Generate(generate_cmd::GenerateCmd),
     Get(get_cmd::GetCmd),
+    Completion {
+        #[arg(value_enum)]
+        shell: Shell,
+    },
 }
 
 fn main() {
@@ -44,6 +51,11 @@ fn main() {
         }
         Commands::Get(get_data) => {
             get_cmd::handle_get_command(get_data);
+        }
+        Commands::Completion { shell } => {
+            let mut cmd = Cli::command();
+            let bin_name = cmd.get_name().to_string();
+            generate(*shell, &mut cmd, bin_name, &mut io::stdout());
         }
     }
 }

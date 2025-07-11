@@ -22,3 +22,4 @@ tabled = { version = "0.20.0", features = ["ansi"] }
 bytesize = "2.0.1"
 users = "0.11.0"
 battery = "0.7.8"
+clap_complete = "4.5.55"
