@@ -5,6 +5,7 @@ use crate::generate::ssh_key::ssh_key;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
+#[command(about = "Generate stuff")]
 pub struct GenerateCmd {
     #[command(subcommand)]
     pub generate_cmd: GenerateSubCmd,
@@ -12,14 +13,15 @@ pub struct GenerateCmd {
 
 #[derive(Subcommand, Debug)]
 pub enum GenerateSubCmd {
+    #[command(about = "Generate key")]
     Key,
+    #[command(about = "Generate passphrase")]
     Passphrase,
+    #[command(about = "Generate password")]
     Password,
 
-    #[command(name = "ssh-key")]
-    SshKey {
-        name: String,
-    },
+    #[command(name = "ssh-key", about = "Create SSH key")]
+    SshKey { name: String },
 }
 
 pub fn handle_generate_command(get_data: &GenerateCmd) {

@@ -4,6 +4,7 @@ use crate::get::sensors::sensors;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
+#[command(about = "Obtain information")]
 pub struct GetCmd {
     #[command(subcommand)]
     pub get_cmd: GetSubCmd,
@@ -11,8 +12,11 @@ pub struct GetCmd {
 
 #[derive(Subcommand, Debug)]
 pub enum GetSubCmd {
+    #[command(about = "Get iface")]
     Iface,
+    #[command(about = "Get IP information")]
     Ip,
+    #[command(about = "Get sensors info")]
     Sensors,
 }
 
