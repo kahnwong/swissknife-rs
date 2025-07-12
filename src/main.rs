@@ -43,6 +43,7 @@ enum Commands {
     },
     Generate(generate_cmd::GenerateCmd),
     Get(get_cmd::GetCmd),
+    #[command(about = "Should I deploy today?")]
     Shouldideploytoday {},
 }
 
