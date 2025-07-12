@@ -14,6 +14,7 @@ mod generate {
     pub mod key;
     pub mod passphrase;
     pub mod password;
+    pub mod qrcode;
     pub mod ssh_key;
 }
 mod utils {
